@@ -44,7 +44,7 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart js-addedto-cart-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -62,7 +62,12 @@ console.log(productsHTML);
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
-    const productId = button.dataset.productId;
+    const {productId} = button.dataset;
+
+    document.querySelector(`.js-addedto-cart-${productId}`).classList.add('added');
+    setTimeout(() => {
+      document.querySelector(`.js-addedto-cart-${productId}`).classList.remove('added');
+    }, 2000);
 
     let macthingItem;
 
