@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>backend practice</title>
+
+</head>
+<body>
+  
+  <script>
+    /* 
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', () => {
+      console.log(xhr.response);
+    })
+    
+    xhr.open('GET', 'https://supersimplebackend.dev');
+    xhr.send();
+
+    fetch(
+      'https://supersimplebackend.dev'
+    ).then((response) => {
+      return response.text()
+    }).then((text) => {
+      console.log(text);
+    });
+    */
+
+    async function getGreeting () {
+      const response = await fetch('https://supersimplebackend.dev');
+      const text = await response.text();
+      console.log(text);
+
+    }
+
+    getGreeting();
+
+    async function getGreetingPost() {
+      const response = await fetch(
+        'https://supersimplebackend.dev/greeting', {
+          method: 'POST',
+          headers: {
+            'Content-Type' : 'application/json'
+          },
+          body: JSON.stringify({
+            name: 'Mayowa'
+          })
+        }
+      );
+      
+      const text = await response.text();
+      console.log(text);
+    }
+
+    getGreetingPost();
+
+    async function getAmazon() {
+      try {
+        const response = await fetch('https://amazon.com');
+        const text = await response.text();
+        console.log(text);
+      } catch (error) {
+        console.log('Your Request was blocked by the backend');
+      }
+    }
+
+    getAmazon();
+    
+  </script>
+</body>
+</html>
